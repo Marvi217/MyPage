@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomasz Niedziółka</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100%;
+            background-color: rgb(28, 28, 28);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        header {
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .image_wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        .image_wrapper img {
+            position: relative;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .menu {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+        }
+
+        .menu_content_wrapper {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 200px;
+            z-index: 10;
+            border-radius: 4px;
+        }
+
+        .menu_content:hover .menu_content_wrapper {
+            display: block;
+        }
+
+        .menu-nav {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            background-color: #1a1a1a;
+        }
+
+        .menu-list {
+            padding: 20px;
+        }
+
+        .menu-item {
+            margin: 5px 0;
+            padding: 10px;
+        }
+
+        .menu-item:hover {
+            background-color: rgb(72, 175, 118);
+        }
+
+        .menu-item-text {
+            cursor: pointer;
+        }
+
+        .header-title {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 15;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .header-title .name {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .header-title .surname {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 5px;
+        }
+
+        #object-113 {
+            position: absolute;
+            top: 30%;
+            right: 50px;
+            color: white;
+            font-size: 1.5em;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #1a1a1a;
+        }
+
+        .description {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .description h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: rgb(72, 175, 118);
+        }
+
+        .description p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .cv-container {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .cv-content .header {
+            margin-bottom: 20px;
+        }
+
+        .cv-content h1 {
+            margin: 0;
+        }
+
+        .cv-content .section {
+            margin-bottom: 20px;
+        }
+
+        .cv-content .section h2 {
+            margin: 0 0 10px;
+            color: rgb(72, 175, 118);
+        }
+
+        .cv-content .skills, .cv-content .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        footer {
+            height: 100px;
+            padding: 20px;
+            text-align: center;
+            background: #333;
+            color: white;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-title {
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .footer-title .name {
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .footer-title .surname {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 5px;
+        }
+        
+        #footer_content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+
+        .find {
+            display: flex;
+            width: 200px;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .footer-logo_content {
+            padding: 5px;
+            padding-bottom: 0;
+            background-color: #ecc900;
+            border-radius: 7px;
+        }
+
+        .background-overlay {
+            width: 100%;
+            height: 1px;
+            background-color: #ffffff;
+            opacity: 0.5;
+        }
+
+        .footer-contact {
+            display: flex;
+            padding: 10px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .footer-contact p {
+            margin: 2px;
+        }
+        .header_cv_photo  img{
+            width: 150px;
+        }
+        .header_cv {
+            position: relative;
+        }
+        #name_cv {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+        }
+        #mail-cv {
+            color: white;
+            text-decoration: none;
+        }
+        .inline-text p, .inline-text a {
+            display: inline;
+        }
+        .white-text {
+            color: white;
+            text-decoration: none;
+        }
+        .display_none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <div id="object-1" class="image_wrapper">
+                <img id="object-1_image" src="desk.jpg" alt="Office">
+                <div id="object-112" class="menu">
+                    <div id="112_content" style="width: 50px; z-index: 10;" class="menu_content">
+                        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                            <path fill-rule="evenodd" d="M19 4a1 1 0 01-1 1H2a1 1 0 010-2h16a1 1 0 011 1zm0 6a1 1 0 01-1 1H2a1 1 0 110-2h16a1 1 0 011 1zm-1 7a1 1 0 100-2H2a1 1 0 100 2h16z"></path>
+                        </svg>
+                        <div class="menu_content_wrapper">
+                            <nav class="menu-nav">
+                                <ol id="menu-list" style="list-style: none;" class="menu-list">
+                                    <li class="menu-item">
+                                        <a href="#" id="home" class="white-text">
+                                            <span class="menu-item-text">
+                                                Strona główna
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#" id="cv" class="white-text">
+                                            <span class="menu-item-text">
+                                                CV
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item white-text display_none">
+                                        <a href="#" id="cpp" class="white-text">
+                                            <span class="menu-item-text">
+                                                C++
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item white-text display_none">
+                                        <a href="#" id="java" class="white-text">
+                                            <span class="menu-item-text">
+                                                Java
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item white-text display_none">
+                                        <a href="#" id="websites" class="white-text">
+                                            <span class="menu-item-text">
+                                                Strony internetowe
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item white-text display_none">
+                                        <a href="#" id="contact" class="white-text">
+                                            <span class="menu-item-text">
+                                                Kontakt
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-title">
+                    <span class="name">TOMASZ</span> 
+                    <span class="surname">NIEDZIÓŁKA</span>
+                </div>
+                <div id="object-113">
+                    <div id="object-113_content">
+                        <p>INFORMATYKA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="description" id="about-me">
+            <h2>O mnie</h2>
+            <p>Jestem studentem informatyki z pasją do programowania i tworzenia innowacyjnych rozwiązań technologicznych. Podczas moich studiów zdobyłem wiedzę i umiejętności w zakresie różnych języków programowania i technologii. Uczyłem się m.in. C++, Javy, HTML, CSS, JavaScript, jQuery, PHP, SQL oraz asemblera. Dzięki temu jestem w stanie tworzyć zarówno zaawansowane aplikacje desktopowe, jak i nowoczesne strony internetowe.</p>
+            <p>Mam doświadczenie w pracy z bazami danych oraz tworzeniu dynamicznych aplikacji webowych. Lubię wyzwania i dążę do ciągłego rozwoju swoich umiejętności. Jestem osobą kreatywną, samodzielną i gotową na nowe wyzwania. W przyszłości chciałbym rozwijać się zawodowo w obszarze programowania i technologii.</p>
+        </div>
+        <div class="cv-container" id="cv-section">
+            <div class="cv-content">
+                <div class="header_cv">
+                    <div class="header_cv_photo">
+                        <img src="cv_photo.jpg" alt="Tomasz Niedziółka">
+                    </div>
+                    <h1 id="name_cv">Tomasz Niedziółka</h1>
+                    <p id="phone_cv">Telefon: +48 507295456</p>
+                    <p id="mail_cv">E-mail: <a href="mailto:t.niedziolka3@gmail.com" class="white-text">t.niedziolka3@gmail.com</a></p>
+                    <p id="adress_cv">Adres: Warszawa</p>
+                </div>
+                <div class="section">
+                    <h2>Podsumowanie</h2>
+                    <p>Jestem studentem pierwszego roku informatyki, który nie miał jeszcze okazji pracować zawodowo, ale moje zaangażowanie i pasja do programowania oraz zdobywana wiedza sprawiają, że czuję się gotowy do podjęcia wyzwań zawodowych. Moje umiejętności analityczne, zdolność do szybkiego uczenia się i determinacja pozwalają mi być elastycznym i efektywnym członkiem zespołu. Chociaż jeszcze nie mam doświadczenia zawodowego, jestem pewien, że mogę przynieść wartość i wkład do projektów informatycznych.</p>
+                </div>
+                <div class="section inline-text">
+                    <h2>Wykształcenie</h2>
+                    <p>10.2023 - obecnie: <a href="https://www.uws.edu.pl/" class="white-text">Uniwersytet w Siedlcach</a>, Informatyka, Siedlce</p>
+                </div>
+                <div class="section inline-text">
+                    <p>09.2019 - 04.2021: <a href="https://www.zolkiewski.siedlce.pl/" class="white-text">IV LO im Hetmana Stanisława Żółkiewskiego</a>, Biologiczno-Chemiczny, Siedlce</p>
+                </div>
+                <div class="section">
+                    <h2>Umiejętności</h2>
+                    <div class="skills">
+                        <div>Java: &#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <div>C++: &#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <div>HTML, CSS: &#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <div>JavaScript: &#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <div>PHP, SQL: &#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>Znajomość języków</h2>
+                    <div class="languages">
+                        <div>Angielski: &#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>Zgoda na przetwarzanie danych osobowych</h2>
+                    <p>Wyrażam zgodę na przetwarzanie danych osobowych zawartych w mojej ofercie pracy dla potrzeb niezbędnych do realizacji procesu rekrutacji oraz przyszłych procesów rekrutacyjnych (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)).</p>
+                </div>
+            </div>
+        </div>
+        <div class="web-container" id="web-section" style="display: none;">
+            <ul id="web-list">
+                <li data-page="fan-page">Strona fanowska</li>
+                <li data-page="interactive-page">Pierwsza interaktywna strona</li>
+                <li data-page="dom">DOM</li>
+                <li data-page="contact-list">Lista kontaktów</li>
+                <li data-page="jquery">jQuery</li>
+                <li data-page="first-php">Pierwsze PHP</li>
+                <li data-page="database-page">Strona z Bazą danych</li>
+            </ul>
+        </div>
+        <div id="fan-page-content" style="display: none;">
+            <h2>Strona fanowska</h2>
+            <p>Tutaj jest prawdziwy HTML dla strony fanowskiej...</p>
+        </div>
+        <div id="interactive-page-content" style="display: none;">
+            <h2>Pierwsza interaktywna strona</h2>
+            <p>Tutaj jest prawdziwy HTML dla pierwszej interaktywnej strony...</p>
+        </div>
+        <div id="dom-content" style="display: none;">
+            <h2>DOM</h2>
+            <p>Tutaj jest prawdziwy HTML dla sekcji DOM...</p>
+        </div>
+        <div id="contact-list-content" style="display: none;">
+            <h2>Lista kontaktów</h2>
+            <p>Tutaj jest prawdziwy HTML dla listy kontaktów...</p>
+        </div>
+        <div id="jquery-content" style="display: none;">
+            <h2>jQuery</h2>
+            <p>Tutaj jest prawdziwy HTML dla sekcji jQuery...</p>
+        </div>
+        <div id="first-php-content" style="display: none;">
+            <h2>Pierwsze PHP</h2>
+            <p>Tutaj jest prawdziwy HTML dla pierwszego PHP...</p>
+        </div>
+        <div id="database-page-content" style="display: none;">
+            <h2>Strona z Bazą danych</h2>
+            <p>Tutaj jest prawdziwy HTML dla strony z bazą danych...</p>
+        </div>
+        <div id="dynamic-content">
+        </div>
+        <script>
+            function loadContent(pageId) {
+                const dynamicContent = document.getElementById('dynamic-content');
+                const contentToLoad = document.getElementById(pageId + '-content');
+                dynamicContent.innerHTML = contentToLoad.innerHTML;
+            }
+    
+            const webList = document.getElementById('web-list');
+            webList.addEventListener('click', function(event) {
+                if (event.target.tagName === 'LI') {
+                    const pageId = event.target.getAttribute('data-page');
+                    loadContent(pageId);
+                }
+            });
+        </script>
+        
+    </main>
+    <footer>
+        <div class="footer">
+            <div class="footer-title">
+                <span class="name">TOMASZ</span> 
+                <span class="surname">NIEDZIÓŁKA</span>
+            </div>
+            <div id="footer_content">
+                <div class="find">
+                    Znajdź mnie:
+                    <div class="footer-logo_content">
+                        <a href="https://github.com/Marvi217" alt="Github logo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4.466 19.59c-.405.078-.534-.171-.534-.384v-2.195c0-.747-.262-1.233-.55-1.481 1.782-.198 3.654-.875 3.654-3.947 0-.874-.312-1.588-.823-2.147.082-.202.356-1.016-.079-2.117 0 0-.671-.215-2.198.82-.64-.18-1.324-.267-2.004-.271-.68.003-1.364.091-2.003.269-1.528-1.035-2.2-.82-2.2-.82-.434 1.102-.16 1.915-.077 2.118-.512.56-.824 1.273-.824 2.147 0 3.064 1.867 3.751 3.645 3.954-.229.2-.436.552-.508 1.07-.457.204-1.614.557-2.328-.666 0 0-.423-.768-1.227-.825 0 0-.78-.01-.055.487 0 0 .525.246.889 1.17 0 0 .463 1.428 2.688.944v1.489c0 .211-.129.459-.528.385-3.18-1.057-5.472-4.056-5.472-7.59 0-4.419 3.582-8 8-8s8 3.581 8 8c0 3.533-2.289 6.531-5.466 7.59z"/></svg></a>
+                    </div>
+                    <div class="footer-logo_content">
+                        <a href="https://pl.linkedin.com/in/tomasz-niedzi%C3%B3%C5%82ka-34aa5a280?trk" alt="LinkedIn logo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="background-overlay"></div>
+        <div class="footer-contact">
+            <a href="mailto:t.niedziolka3@gmail.com" class="white-text">t.niedziolka3@gmail.com</a>
+            <p>Telefon: +48 507 295 456</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeLink = document.getElementById('home');
+            const cvLink = document.getElementById('cv');
+            const aboutMeSection = document.getElementById('about-me');
+            const cvSection = document.getElementById('cv-section');
+    
+            function showCVSection() {
+                aboutMeSection.style.display = 'none';
+                cvSection.style.display = 'block';
+            }
+    
+            function showAboutMeSection() {
+                cvSection.style.display = 'none';
+                aboutMeSection.style.display = 'block';
+            }
+    
+            homeLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                showAboutMeSection();
+            });
+    
+            cvLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                showCVSection();
+            });
+    
+            showAboutMeSection();
+        });
+    </script>
+        
+</body>
+</html>
